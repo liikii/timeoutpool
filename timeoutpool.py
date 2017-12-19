@@ -5,7 +5,7 @@ mysql db pool
 from queue import Queue
 import pymysql
 import time
-from threading import Event, Thread, local
+from threading import Event, Thread
 
 
 def close_pool(pool):
@@ -22,8 +22,6 @@ def close_pool(pool):
 
 
 class SimpleConnPool:
-    lock = Event()
-
     def __init__(self, conf, pool_size, auto_close=False, timeout=10):
         self.config = conf
         self.pool = Queue(maxsize=pool_size)
@@ -31,6 +29,7 @@ class SimpleConnPool:
         self.status = 0
         self.auto_cls = auto_close
         self.timeout = timeout
+        self.lock = Event()
         if self.auto_cls:
             self.__auto_close()
 
@@ -75,7 +74,7 @@ class SimpleConnPool:
 
 if __name__ == "__main__":
     dd = {
-        'user': 'author', 'password': 'password', 'host': '127.0.0.1', 'db': 'test', 'charset': 'utf8', 'autocommit': True
+        'user': 'user_name', 'password': 'password', 'host': '127.0.0.1', 'db': 'test', 'charset': 'utf8', 'autocommit': True
     }
     conn_pool = SimpleConnPool(dd, 4, auto_close=True)
 
