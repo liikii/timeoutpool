@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 """
-mysql db pool
+simple mysql db pool
 """
 from queue import Queue
 import pymysql
@@ -87,5 +87,4 @@ if __name__ == "__main__":
     conn_db2 = conn_pool.get()
     conn_pool.restore(conn_db2)
 
-    print('first')
     time.sleep(25)

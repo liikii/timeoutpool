@@ -6,6 +6,7 @@ from tornado.httpserver import HTTPServer
 
 from urllib.parse import unquote
 
+
 page = """<!DOCTYPE html>
 <html>
 <body>
@@ -49,8 +50,6 @@ def make_app():
 
 
 if __name__ == "__main__":
-    # Tornado configures logging.
-    # options.parse_command_line()
     app = make_app()
     max_buffer_size = 10 * 1024 ** 4  # 10 GB
     http_server = HTTPServer(
@@ -58,6 +57,5 @@ if __name__ == "__main__":
         max_buffer_size=max_buffer_size,
     )
     http_server.listen(8888)
-    # app.listen(8888)
     tornado.ioloop.IOLoop.current().start()
 
