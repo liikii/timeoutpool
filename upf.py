@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+you'll need to parse this to get the filename and the embedded data. 
+I think the mime-related tools in the standard library's email package 
+are probably the best way to parse this once you've gotten it saved to a file.
+# https://stackoverflow.com/questions/25529804/tornado-mime-type-of-the-stream-request-body-output/25584849
+"""
 import tornado.ioloop
 import tornado.web
 from tornado import options
